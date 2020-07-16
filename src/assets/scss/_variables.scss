@@ -1,4 +1,13 @@
-// Colors, gradients, etc
+// * Breakpoints
+$bp-container: 1200px;
+
+// * Colors, gradients, etc
 $color-accent: #2931eb;
+$color-accent-mutted: #edf2fd;
 $color-white-mutted: #b4b7f8;
+$color-black: #231f1f;
+$color-link: #5b78b9;
 $gradient-sidebar: linear-gradient(180deg, #2931eb 0%, #151cc3 100%);
+
+// * Transitions
+$trans-prop: 0.15s ease;
