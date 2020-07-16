@@ -4,4 +4,8 @@
   </div>
 </template>
 
-<style lang="scss"></style>
+<script>
+import "@/assets/scss/_reset.scss";
+
+export default {};
+</script>
