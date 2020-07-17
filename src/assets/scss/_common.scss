@@ -3,6 +3,7 @@
   font-size: 16px;
   font-weight: 500;
   box-sizing: border-box;
+  outline: none;
 }
 
 b,
@@ -20,7 +21,8 @@ a {
   color: $color-link;
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 }

@@ -1,40 +1,42 @@
 <template>
   <div class="dashboard">
     <aside class="sidebar">
-      <div class="sidebar__content">
-        <h6 class="sidebar__title-buyer">You are buying</h6>
-        <p class="sidebar__text-buyer">
-          Flight in space /Jupiter Area<br /><span
-            >From IO to GANIMED, J29, 2048, G5/42</span
-          ><br />
-          Spaceship "Queen of the Sun"
-        </p>
-        <p class="sidebar__amount">42350.00 USD</p>
-        <p class="sidebar__amount-hint">
-          Amount to pay without the payment system commission
-        </p>
-        <h6 class="sidebar__title-seller">Seller</h6>
-        <address class="sidebar__text-seller">
-          National Aeronautics and Space<br />Administration (NASA)<img
-            class="sidebar__text-seller-icon"
-            src="@/assets/img/planet.svg"
-            alt=""
-          />
-          <br />
-          Headquarters 300 E. Street SW, Suite 5R30
-        </address>
-        <p class="sidebar__meta"><span>Rating:</span> 5</p>
-        <p class="sidebar__meta"><span>Reviews:</span> 308 042</p>
-      </div>
-      <div class="sidebar__copyright">
-        <a href="#">Provided by Onpay.ru</a>
+      <div class="sidebar__fixed-content">
+        <div class="sidebar__content">
+          <h6 class="sidebar__title-buyer">You are buying</h6>
+          <p class="sidebar__text-buyer">
+            Flight in space /Jupiter Area<br /><span
+              >From IO to GANIMED, J29, 2048, G5/42</span
+            ><br />
+            Spaceship "Queen of the Sun"
+          </p>
+          <p class="sidebar__amount">42350.00 USD</p>
+          <p class="sidebar__amount-hint">
+            Amount to pay without the payment system commission
+          </p>
+          <h6 class="sidebar__title-seller">Seller</h6>
+          <address class="sidebar__text-seller">
+            National Aeronautics and Space<br />Administration (NASA)<img
+              class="sidebar__text-seller-icon"
+              src="@/assets/img/planet.svg"
+              alt=""
+            />
+            <br />
+            Headquarters 300 E. Street SW, Suite 5R30
+          </address>
+          <p class="sidebar__meta"><span>Rating:</span> 5</p>
+          <p class="sidebar__meta"><span>Reviews:</span> 308 042</p>
+        </div>
+        <div class="sidebar__copyright">
+          <router-link to="/onpay">Provided by Onpay.ru</router-link>
+        </div>
       </div>
     </aside>
     <main class="form">
       <section class="method">
         <div class="method__header">
           <h6 class="method__title">Payment method</h6>
-          <a href="#">Payment limits</a>
+          <router-link to="/payment-limits">Payment limits</router-link>
         </div>
         <div class="radio-buttons">
           <button class="radio-buttons__item radio-buttons__item--active">
@@ -48,28 +50,28 @@
         <div class="payment-methods">
           <button class="payment-methods__item">
             <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/qiwi.png" alt="" />
+              <img src="@/assets/img/logos/qiwi.svg" alt="" />
             </div>
             <h6 class="payment-methods__item-title">Qiwi Wallet</h6>
             <p class="payment-methods__item-info">Payment Fees 1.5%</p>
           </button>
           <button class="payment-methods__item">
             <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/skrill.png" alt="" />
+              <img src="@/assets/img/logos/skrill.svg" alt="" />
             </div>
             <h6 class="payment-methods__item-title">Skrill</h6>
             <p class="payment-methods__item-info">Payment Fees 2.5%</p>
           </button>
           <button class="payment-methods__item">
             <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/payoneer.png" alt="" />
+              <img src="@/assets/img/logos/payoneer.svg" alt="" />
             </div>
             <h6 class="payment-methods__item-title">Payoneer</h6>
             <p class="payment-methods__item-info">Payment Fees 5%</p>
           </button>
           <button class="payment-methods__item">
             <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/payza.png" alt="" />
+              <img src="@/assets/img/logos/payza.svg" alt="" />
             </div>
             <h6 class="payment-methods__item-title">Payza</h6>
             <p class="payment-methods__item-info">Payment Fees 2.5%</p>
@@ -83,11 +85,67 @@
           </button>
           <button class="payment-methods__item">
             <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/paypal.png" alt="" />
+              <img src="@/assets/img/logos/paypal.svg" alt="" />
             </div>
             <h6 class="payment-methods__item-title">PayPal</h6>
             <p class="payment-methods__item-info">Payment Fees 0.5%</p>
           </button>
+        </div>
+      </section>
+      <section class="payment">
+        <h6 class="payment__title">Payment</h6>
+        <div class="input-group input-group--with-hint">
+          <label for="amount" class="label">Amount with commission</label>
+          <div class="input-currency">
+            <input
+              id="amount"
+              type="text"
+              class="input"
+              disabled
+              value="43408.75"
+            />
+            <span class="input-currency__type">USD</span>
+          </div>
+          <p class="input-group__hint">payment system fees 2.5% (+$1058.75)</p>
+        </div>
+        <div class="input-group input-group--with-hint">
+          <label for="email" class="label">Yandex.Money account</label>
+          <input id="email" type="email" class="input" />
+        </div>
+        <div class="input-group input-group--with-hint">
+          <label for="phone" class="label">Phone</label>
+          <input id="phone" type="tel" class="input" value="+380" />
+        </div>
+        <div class="input-group">
+          <label for="message" class="label">Message for seller</label>
+          <textarea
+            id="message"
+            class="input input--textarea"
+            placeholder="If you need additional services, please inform the seller about this"
+          ></textarea>
+        </div>
+        <div class="input-group input-group--with-hint">
+          <label for="captcha" class="label">Enter captcha</label>
+          <div class="input-captcha">
+            <input id="captcha" type="text" class="input" />
+            <div class="input-captcha__code">
+              <img src="@/assets/img/captcha.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="input-group">
+          <div></div>
+          <p class="form-agreement">
+            By clicking "Confirm payment" I realize that the seller is
+            responsible for the quality of the product/services and accept the
+            <router-link to="/terms" class="accent-link"
+              >terms of the agreement</router-link
+            >
+          </p>
+        </div>
+        <div class="input-group input-group--jc-fs">
+          <div></div>
+          <button type="button" class="button-accent">Confirm payment</button>
         </div>
       </section>
     </main>
@@ -110,12 +168,19 @@ export default {
 
 // * Sidebar
 .sidebar {
-  padding: 36px 28px 42px 28px;
   background: $gradient-sidebar;
   color: #fff;
+}
+
+.sidebar__fixed-content {
+  position: fixed;
+  width: 418px;
+  max-width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 36px 28px 42px 28px;
 }
 
 .sidebar__content {
@@ -188,6 +253,7 @@ export default {
 .form {
   color: $color-black;
   padding: 36px;
+  padding-bottom: 60px;
   width: 100%;
   max-width: 782px;
 }
@@ -201,5 +267,13 @@ export default {
 
 .radio-buttons {
   margin-bottom: 14px;
+}
+
+.method {
+  margin-bottom: 50px;
+}
+
+.payment__title {
+  margin-bottom: 24px;
 }
 </style>

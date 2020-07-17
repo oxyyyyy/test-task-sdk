@@ -7,7 +7,13 @@ $color-accent-mutted: #edf2fd;
 $color-white-mutted: #b4b7f8;
 $color-black: #231f1f;
 $color-link: #5b78b9;
+$color-input-border: #b3b3b3;
+$color-hint-text: #939393;
+$color-disabled-input: #efefef;
 $gradient-sidebar: linear-gradient(180deg, #2931eb 0%, #151cc3 100%);
 
+// * Sizes
+$border-radius: 6px;
+
 // * Transitions
-$trans-prop: 0.15s ease;
+$trans-prop: 0.1s linear;

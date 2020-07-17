@@ -16,6 +16,7 @@
   transition: all $trans-prop;
 
   &:hover,
+  &:focus,
   &--active {
     color: #fff;
     background-color: $color-accent;
@@ -45,13 +46,14 @@
 
 .payment-methods__item {
   text-align: center;
-  border-radius: 6px;
+  border-radius: $border-radius;
   color: $color-black;
   font-size: 16px;
   line-height: 20px;
   padding-bottom: 5px;
 
   &:hover,
+  &:focus,
   &--active {
     .payment-methods__item-logo-container {
       background-color: #fff;
@@ -66,7 +68,7 @@
   align-items: center;
   background-color: $color-accent-mutted;
   min-height: 100px;
-  border-radius: 6px;
+  border-radius: $border-radius;
   margin-bottom: 8px;
   border: 3px solid transparent;
   transition: all $trans-prop;
@@ -78,4 +80,150 @@
 
 .payment-methods__item-info {
   font-weight: normal;
+}
+
+// * Inputs
+.input-group {
+  display: grid;
+  grid-template-columns: 204px auto;
+  grid-gap: 18px;
+  align-items: flex-start;
+
+  &--with-hint {
+    grid-template-columns: 204px auto 170px;
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: 12px;
+  }
+}
+
+.input-group--jc-fs {
+  justify-content: flex-start;
+}
+
+.input-group__hint {
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-hint-text;
+}
+
+.label {
+  padding-top: 12px;
+}
+
+.input {
+  width: 100%;
+  border: 2px solid $color-input-border;
+  border-radius: $border-radius;
+  outline: none;
+  min-height: 42px;
+  padding: 5px 15px;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-black;
+  transition: border $trans-prop;
+
+  &:hover {
+    border-color: $color-black;
+  }
+
+  &:focus {
+    border-color: $color-accent;
+  }
+
+  &:disabled {
+    background: $color-disabled-input;
+    border-color: $color-disabled-input;
+  }
+
+  &::placeholder {
+    color: $color-input-border;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color-input-border;
+  }
+
+  &::-ms-input-placeholder {
+    color: $color-input-border;
+  }
+}
+
+.input--textarea {
+  resize: none;
+  min-height: 137px;
+  padding: 12px 15px;
+}
+
+.input-currency {
+  position: relative;
+
+  .input {
+    padding-right: 50px;
+  }
+}
+
+.input-currency__type {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #b3b3b3;
+}
+
+.input-captcha {
+  display: grid;
+  grid-template-columns: auto 82px;
+  grid-gap: 8px;
+}
+
+.input-captcha__code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-disabled-input;
+  border-radius: $border-radius;
+}
+
+.form-agreement {
+  color: #000;
+  font-size: 15px;
+  line-height: 23px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+// * Links
+.accent-link {
+  color: $color-accent;
+  border-bottom: 1px solid rgba($color-accent, 0.25);
+  transition: border $trans-prop;
+
+  &:hover,
+  &:focus {
+    border-color: $color-accent;
+    text-decoration: none;
+  }
+}
+
+// * Buttons
+.button-accent {
+  font-size: 18px;
+  line-height: 23px;
+  color: #fff;
+  background-color: $color-accent;
+  padding: 9px 30px;
+  border-radius: $border-radius;
+  border: 2px solid $color-accent;
+  transition: all $trans-prop;
+
+  &:hover,
+  &:focus {
+    color: $color-accent;
+    background-color: #fff;
+  }
 }
