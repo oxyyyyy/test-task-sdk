@@ -3,3 +3,29 @@
     display: none;
   }
 }
+
+.show-to-collapse {
+  display: none !important;
+
+  @media screen and (max-width: $bp-collapse) {
+    display: initial !important;
+  }
+
+  &--flex {
+    @media screen and (max-width: $bp-collapse) {
+      display: flex !important;
+    }
+  }
+}
+
+.alwaysShow {
+  display: block !important;
+
+  &--grid {
+    display: grid !important;
+  }
+
+  &--flex {
+    display: flex !important;
+  }
+}

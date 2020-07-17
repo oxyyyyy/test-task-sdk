@@ -25,22 +25,121 @@
   &:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+
+    @media screen and (max-width: $bp-container) {
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 0;
+    }
   }
 
   &:last-child {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+
+    @media screen and (max-width: $bp-container) {
+      border-bottom-left-radius: 5px;
+      border-top-right-radius: 0;
+    }
   }
 }
 
 // * Payment methods plates
 .payment-methods {
+  position: relative;
+}
+
+.payment-methods--active {
+  .payment-methods__mobile-select {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
+    box-shadow: $box-shadow-black;
+  }
+
+  .payment-methods__mobile-select-list {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    box-shadow: $box-shadow-black;
+  }
+
+  .payment-methods__mobile-select-icon {
+    transform: rotateZ(-180deg);
+  }
+}
+
+.payment-methods__mobile-select-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
+  transition: box-shadow $trans-prop;
 
   @media screen and (max-width: $bp-container) {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: $bp-collapse) {
+    grid-template-columns: auto;
+    grid-gap: 7px;
+    padding: 10px 15px;
+    border: 2px solid #b3b3b3;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    background-color: #fff;
+  }
+
+  .payment-methods__item {
+    @media screen and (max-width: $bp-collapse) {
+      text-align: left;
+      padding: 0;
+      border-radius: 0;
+
+      &:hover,
+      &:focus,
+      &--active {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+.payment-methods__mobile-select-icon {
+  transition: transform $trans-prop;
+}
+
+.payment-methods__mobile-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 2px solid $color-input-border;
+  border-radius: $border-radius;
+  outline: none;
+  min-height: 42px;
+  padding: 5px 15px;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-black;
+  transition: box-shadow $trans-prop, border $trans-prop;
+
+  &:hover {
+    border-color: $color-black;
+
+    .payment-methods__mobile-select-icon {
+      path {
+        fill: $color-black;
+      }
+    }
+  }
+
+  &:focus {
+    border-color: $color-accent;
+
+    .payment-methods__mobile-select-icon {
+      path {
+        fill: $color-accent;
+      }
+    }
   }
 }
 

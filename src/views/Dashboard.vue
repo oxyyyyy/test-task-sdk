@@ -1,7 +1,24 @@
 <template>
   <div class="dashboard">
+    <div
+      class="amount-to-pay-preview"
+      :class="{ 'amount-to-pay-preview--hide': isActiveAmountToPay }"
+      @click="isActiveAmountToPay = !isActiveAmountToPay"
+    >
+      <span class="amount-to-pay-preview__label">Amount to pay</span>
+      <span class="amount-to-pay-preview__value">42350.00 USD</span>
+      <div class="sidebar__mobile-icon show-to-collapse"></div>
+    </div>
     <aside class="sidebar">
-      <div class="sidebar__fixed-content">
+      <div
+        class="sidebar__fixed-content"
+        @click="isActiveAmountToPay = !isActiveAmountToPay"
+        :class="{
+          'sidebar__fixed-content--show': isActiveAmountToPay,
+          alwaysShow: windowWidth >= 836,
+          'alwaysShow--flex': windowWidth >= 836
+        }"
+      >
         <div class="sidebar__content">
           <h6 class="sidebar__title-buyer">You are buying</h6>
           <p class="sidebar__text-buyer">
@@ -14,8 +31,8 @@
           <p class="sidebar__amount-hint">
             Amount to pay without the payment system commission
           </p>
-          <h6 class="sidebar__title-seller">Seller</h6>
-          <address class="sidebar__text-seller">
+          <h6 class="sidebar__title-seller hide-to-collapse">Seller</h6>
+          <address class="sidebar__text-seller hide-to-collapse">
             National Aeronautics and Space<br />Administration (NASA)<img
               class="sidebar__text-seller-icon"
               src="@/assets/img/planet.svg"
@@ -24,12 +41,15 @@
             <br />
             Headquarters 300 E. Street SW, Suite 5R30
           </address>
-          <p class="sidebar__meta"><span>Rating:</span> 5</p>
-          <p class="sidebar__meta"><span>Reviews:</span> 308 042</p>
+          <p class="sidebar__meta hide-to-collapse"><span>Rating:</span> 5</p>
+          <p class="sidebar__meta hide-to-collapse">
+            <span>Reviews:</span> 308 042
+          </p>
         </div>
-        <div class="sidebar__copyright">
+        <div class="sidebar__copyright hide-to-collapse">
           <router-link to="/onpay">Provided by Onpay.ru</router-link>
         </div>
+        <div class="sidebar__mobile-icon show-to-collapse"></div>
       </div>
     </aside>
     <main class="form">
@@ -40,7 +60,7 @@
             >Payment limits</router-link
           >
         </div>
-        <div class="radio-buttons">
+        <div class="radio-buttons hide-to-collapse">
           <button class="radio-buttons__item radio-buttons__item--active">
             E-money
           </button>
@@ -49,49 +69,111 @@
           <button class="radio-buttons__item">Bank Transfers</button>
           <button class="radio-buttons__item">Terminals</button>
         </div>
-        <div class="payment-methods">
-          <button class="payment-methods__item">
-            <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/qiwi.svg" alt="" />
-            </div>
-            <h6 class="payment-methods__item-title">Qiwi Wallet</h6>
-            <p class="payment-methods__item-info">Payment Fees 1.5%</p>
+        <div
+          class="payment-methods"
+          :class="{ 'payment-methods--active': isActiveSelect }"
+        >
+          <button
+            class="payment-methods__mobile-select show-to-collapse show-to-collapse--flex"
+            @click="isActiveSelect = !isActiveSelect"
+            role="button"
+            aria-labelledby="dropdown-label"
+            tabindex="0"
+          >
+            <span>Yandex.Money</span>
+            <svg
+              class="payment-methods__mobile-select-icon"
+              width="10"
+              height="8"
+              viewBox="0 0 10 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M8.49779 0.879578L10 2.34941L5 7.24162L0 2.34941L1.50221 0.879578L5 4.30197L8.49779 0.879578Z"
+                fill="#B3B3B3"
+              />
+            </svg>
           </button>
-          <button class="payment-methods__item">
-            <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/skrill.svg" alt="" />
-            </div>
-            <h6 class="payment-methods__item-title">Skrill</h6>
-            <p class="payment-methods__item-info">Payment Fees 2.5%</p>
-          </button>
-          <button class="payment-methods__item">
-            <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/payoneer.svg" alt="" />
-            </div>
-            <h6 class="payment-methods__item-title">Payoneer</h6>
-            <p class="payment-methods__item-info">Payment Fees 5%</p>
-          </button>
-          <button class="payment-methods__item">
-            <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/payza.svg" alt="" />
-            </div>
-            <h6 class="payment-methods__item-title">Payza</h6>
-            <p class="payment-methods__item-info">Payment Fees 2.5%</p>
-          </button>
-          <button class="payment-methods__item payment-methods__item--active">
-            <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/yandex.png" alt="" />
-            </div>
-            <h6 class="payment-methods__item-title">Yandex.Money</h6>
-            <p class="payment-methods__item-info">Payment Fees 2.5%</p>
-          </button>
-          <button class="payment-methods__item">
-            <div class="payment-methods__item-logo-container">
-              <img src="@/assets/img/logos/paypal.svg" alt="" />
-            </div>
-            <h6 class="payment-methods__item-title">PayPal</h6>
-            <p class="payment-methods__item-info">Payment Fees 0.5%</p>
-          </button>
+          <div
+            class="payment-methods__mobile-select-list"
+            :class="{
+              alwaysShow: windowWidth >= 836,
+              'alwaysShow--grid': windowWidth >= 836
+            }"
+            v-show="isActiveSelect"
+            :aria-expanded="isActiveSelect"
+            role="list"
+          >
+            <button class="payment-methods__item">
+              <div
+                class="payment-methods__item-logo-container hide-to-collapse"
+              >
+                <img src="@/assets/img/logos/qiwi.svg" alt="" />
+              </div>
+              <h6 class="payment-methods__item-title">Qiwi Wallet</h6>
+              <p class="payment-methods__item-info hide-to-collapse">
+                Payment Fees 1.5%
+              </p>
+            </button>
+            <button class="payment-methods__item">
+              <div
+                class="payment-methods__item-logo-container hide-to-collapse"
+              >
+                <img src="@/assets/img/logos/skrill.svg" alt="" />
+              </div>
+              <h6 class="payment-methods__item-title">Skrill</h6>
+              <p class="payment-methods__item-info hide-to-collapse">
+                Payment Fees 2.5%
+              </p>
+            </button>
+            <button class="payment-methods__item">
+              <div
+                class="payment-methods__item-logo-container hide-to-collapse"
+              >
+                <img src="@/assets/img/logos/payoneer.svg" alt="" />
+              </div>
+              <h6 class="payment-methods__item-title">Payoneer</h6>
+              <p class="payment-methods__item-info hide-to-collapse">
+                Payment Fees 5%
+              </p>
+            </button>
+            <button class="payment-methods__item">
+              <div
+                class="payment-methods__item-logo-container hide-to-collapse"
+              >
+                <img src="@/assets/img/logos/payza.svg" alt="" />
+              </div>
+              <h6 class="payment-methods__item-title">Payza</h6>
+              <p class="payment-methods__item-info hide-to-collapse">
+                Payment Fees 2.5%
+              </p>
+            </button>
+            <button class="payment-methods__item payment-methods__item--active">
+              <div
+                class="payment-methods__item-logo-container hide-to-collapse"
+              >
+                <img src="@/assets/img/logos/yandex.png" alt="" />
+              </div>
+              <h6 class="payment-methods__item-title">Yandex.Money</h6>
+              <p class="payment-methods__item-info hide-to-collapse">
+                Payment Fees 2.5%
+              </p>
+            </button>
+            <button class="payment-methods__item">
+              <div
+                class="payment-methods__item-logo-container hide-to-collapse"
+              >
+                <img src="@/assets/img/logos/paypal.svg" alt="" />
+              </div>
+              <h6 class="payment-methods__item-title">PayPal</h6>
+              <p class="payment-methods__item-info hide-to-collapse">
+                Payment Fees 0.5%
+              </p>
+            </button>
+          </div>
         </div>
       </section>
       <section class="payment">
@@ -165,7 +247,26 @@
 
 <script>
 export default {
-  name: "Dashboard"
+  name: "Dashboard",
+  data() {
+    return {
+      isActiveSelect: false,
+      windowWidth: window.innerWidth,
+      isActiveAmountToPay: false
+    };
+  },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.windowWidth = window.innerWidth;
+    }
+  }
 };
 </script>
 
@@ -182,12 +283,54 @@ export default {
 }
 
 // * Sidebar
-.sidebar {
-  background: $gradient-sidebar;
+.amount-to-pay-preview {
+  background: linear-gradient(0deg, #2f37f4, #2f37f4);
+  padding: 16px;
   color: #fff;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 2px;
+  visibility: visible;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  @media screen and (max-width: $bp-collapse) {
+    display: flex;
+  }
+}
+
+.amount-to-pay-preview--hide {
+  transform: translateY(-5%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.amount-to-pay-preview__label {
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.amount-to-pay-preview__value {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.sidebar {
+  color: #fff;
+
+  @media screen and (max-width: $bp-collapse) {
+    padding: 10px;
+    position: fixed;
+    z-index: 50;
+    visibility: hidden;
+    width: 100%;
+  }
 }
 
 .sidebar__fixed-content {
+  background: $gradient-sidebar;
   position: fixed;
   width: 418px;
   max-width: 100%;
@@ -198,13 +341,32 @@ export default {
   padding: 36px 28px 42px 28px;
 
   @media screen and (max-width: $bp-collapse) {
-    position: static;
+    position: relative;
     width: auto;
+    padding: 20px;
+    border-radius: $border-radius;
+    background: linear-gradient(180deg, #2f37f4 0%, #1820de 100%);
+    box-shadow: 0px 4px 12px rgba(23, 30, 198, 0.35);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(5%);
+    cursor: pointer;
   }
+}
+
+.sidebar__fixed-content--show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
 }
 
 .sidebar__content {
   margin-bottom: 30px;
+
+  @media screen and (max-width: $bp-collapse) {
+    margin-bottom: 0;
+  }
 }
 
 .sidebar__title-buyer {
@@ -220,11 +382,19 @@ export default {
   span {
     font-weight: 600;
   }
+
+  @media screen and (max-width: $bp-collapse) {
+    font-size: 20px;
+  }
 }
 
 .sidebar__amount {
   font-size: 34px;
   line-height: 44px;
+
+  @media screen and (max-width: $bp-collapse) {
+    font-size: 28px;
+  }
 }
 
 .sidebar__amount-hint {
@@ -232,6 +402,11 @@ export default {
   line-height: 20px;
   color: $color-white-mutted;
   margin-bottom: 40px;
+
+  @media screen and (max-width: $bp-collapse) {
+    margin-bottom: 0;
+    font-size: 15px;
+  }
 }
 
 .sidebar__title-seller {
@@ -269,6 +444,17 @@ export default {
   }
 }
 
+.sidebar__mobile-icon {
+  width: 28px;
+  height: 2px;
+  background: #6066f3;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 8px;
+  right: calc(50% - 20px);
+  transform: translateX(-50%);
+}
+
 // * Main content
 .form {
   color: $color-black;
@@ -297,6 +483,10 @@ export default {
 
 .method {
   margin-bottom: 50px;
+
+  @media screen and (max-width: $bp-collapse) {
+    margin-bottom: 40px;
+  }
 }
 
 .payment__title {
@@ -312,7 +502,7 @@ export default {
     position: fixed;
     bottom: 16px;
     width: calc(100% - 32px);
-    box-shadow: 0px 4px 12px rgba(41, 49, 235, 0.4);
+    box-shadow: $box-shadow;
   }
 }
 </style>
