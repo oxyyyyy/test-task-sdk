@@ -9,6 +9,7 @@
     url("/fonts/GoogleSans/GoogleSans-MediumItalic.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
+  font-display: auto;
 }
 
 @font-face {
@@ -22,6 +23,7 @@
     url("/fonts/GoogleSans/GoogleSans-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
+  font-display: auto;
 }
 
 @font-face {
@@ -35,6 +37,7 @@
     url("/fonts/GoogleSans/GoogleSans-Italic.ttf") format("truetype");
   font-weight: normal;
   font-style: italic;
+  font-display: auto;
 }
 
 @font-face {
@@ -48,6 +51,7 @@
     url("/fonts/GoogleSans/GoogleSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
+  font-display: auto;
 }
 
 @font-face {
@@ -61,6 +65,7 @@
     url("/fonts/GoogleSans/GoogleSans-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: auto;
 }
 
 @font-face {
@@ -74,4 +79,5 @@
     url("/fonts/GoogleSans/GoogleSans-BoldItalic.ttf") format("truetype");
   font-weight: bold;
   font-style: italic;
+  font-display: auto;
 }
