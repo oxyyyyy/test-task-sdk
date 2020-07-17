@@ -36,7 +36,9 @@
       <section class="method">
         <div class="method__header">
           <h6 class="method__title">Payment method</h6>
-          <router-link to="/payment-limits">Payment limits</router-link>
+          <router-link to="/payment-limits" class="hide-to-collapse"
+            >Payment limits</router-link
+          >
         </div>
         <div class="radio-buttons">
           <button class="radio-buttons__item radio-buttons__item--active">
@@ -94,7 +96,9 @@
       </section>
       <section class="payment">
         <h6 class="payment__title">Payment</h6>
-        <div class="input-group input-group--with-hint">
+        <div
+          class="input-group input-group--with-hint input-group--mobile-layout"
+        >
           <label for="amount" class="label">Amount with commission</label>
           <div class="input-currency">
             <input
@@ -106,7 +110,12 @@
             />
             <span class="input-currency__type">USD</span>
           </div>
-          <p class="input-group__hint">payment system fees 2.5% (+$1058.75)</p>
+          <p class="input-group__hint">
+            <span class="input-group__hint-mobile-hide"
+              >payment system fees</span
+            >
+            2.5% (+$1058.75)
+          </p>
         </div>
         <div class="input-group input-group--with-hint">
           <label for="email" class="label">Yandex.Money account</label>
@@ -145,7 +154,9 @@
         </div>
         <div class="input-group input-group--jc-fs">
           <div></div>
-          <button type="button" class="button-accent">Confirm payment</button>
+          <button type="button" class="button-accent form__submit-btn">
+            Confirm payment
+          </button>
         </div>
       </section>
     </main>
@@ -164,6 +175,10 @@ export default {
   display: grid;
   grid-template-columns: 418px auto;
   min-height: 100vh;
+
+  @media screen and (max-width: $bp-collapse) {
+    grid-template-columns: auto;
+  }
 }
 
 // * Sidebar
@@ -181,6 +196,11 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   padding: 36px 28px 42px 28px;
+
+  @media screen and (max-width: $bp-collapse) {
+    position: static;
+    width: auto;
+  }
 }
 
 .sidebar__content {
@@ -256,6 +276,12 @@ export default {
   padding-bottom: 60px;
   width: 100%;
   max-width: 782px;
+
+  @media screen and (max-width: $bp-collapse) {
+    padding: 18px 16px;
+    padding-bottom: 70px;
+    max-width: 100%;
+  }
 }
 
 .method__header {
@@ -275,5 +301,18 @@ export default {
 
 .payment__title {
   margin-bottom: 24px;
+
+  @media screen and (max-width: $bp-collapse) {
+    margin-bottom: 20px;
+  }
+}
+
+.form__submit-btn {
+  @media screen and (max-width: $bp-collapse) {
+    position: fixed;
+    bottom: 16px;
+    width: calc(100% - 32px);
+    box-shadow: 0px 4px 12px rgba(41, 49, 235, 0.4);
+  }
 }
 </style>

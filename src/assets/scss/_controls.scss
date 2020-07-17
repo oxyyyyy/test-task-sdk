@@ -93,8 +93,41 @@
     grid-template-columns: 204px auto 170px;
   }
 
+  &--mobile-layout {
+    @media screen and (max-width: $bp-collapse) {
+      grid-template-areas:
+        "label hint"
+        "input input";
+      grid-gap: 6px 8px !important;
+      justify-content: space-between;
+      align-items: center;
+
+      .label {
+        grid-area: label;
+        padding-top: 0;
+      }
+
+      .input-group__hint {
+        grid-area: hint;
+      }
+
+      .input-currency {
+        grid-area: input;
+      }
+    }
+  }
+
   &:not(:last-of-type) {
     margin-bottom: 12px;
+
+    @media screen and (max-width: $bp-collapse) {
+      margin-bottom: 7px;
+    }
+  }
+
+  @media screen and (max-width: $bp-container) {
+    grid-template-columns: auto;
+    grid-gap: 6px;
   }
 }
 
@@ -108,8 +141,18 @@
   color: $color-hint-text;
 }
 
+.input-group__hint-mobile-hide {
+  @media screen and (max-width: $bp-collapse) {
+    display: none;
+  }
+}
+
 .label {
   padding-top: 12px;
+
+  @media screen and (max-width: $bp-container) {
+    padding-top: 5px;
+  }
 }
 
 .input {
@@ -155,6 +198,10 @@
   resize: none;
   min-height: 137px;
   padding: 12px 15px;
+
+  @media screen and (max-width: $bp-collapse) {
+    min-height: 84px;
+  }
 }
 
 .input-currency {

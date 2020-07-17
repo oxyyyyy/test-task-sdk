@@ -1,0 +1,5 @@
+.hide-to-collapse {
+  @media screen and (max-width: $bp-collapse) {
+    display: none;
+  }
+}
